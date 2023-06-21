@@ -1,0 +1,557 @@
+{
+	"info": {
+		"_postman_id": "4a21ca9e-7df4-4e1a-a642-bf35a007d4fd",
+		"name": ".Main",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26678158"
+	},
+	"item": [
+		{
+			"name": "1. Create Entities",
+			"item": [
+				{
+					"name": "Create islands",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"actionType\": \"APPEND\",\n    \"entities\": [\n        {\n            \"id\": \"urn:ngsi-ld:Island:001\",\n            \"type\": \"Island\",\n            \"location\": {\n                \"type\": \"geo:json\",\n                \"value\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        37.73333,\n                        -25.66667\n                    ]\n                }\n            },\n            \"name\": {\n                \"type\": \"Text\",\n                \"value\": \"Ilha de São Miguel\"\n            }\n        },\n        {\n            \"id\": \"urn:ngsi-ld:Island:002\",\n            \"type\": \"Island\",\n            \"location\": {\n                \"type\": \"geo:json\",\n                \"value\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        36.97,\n                        -25.1\n                    ]\n                }\n            },\n            \"name\": {\n                \"type\": \"Text\",\n                \"value\": \"Ilha de Santa Maria\"\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/op/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"op",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create stores",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"actionType\": \"APPEND\",\n    \"entities\": [\n        {\n            \"id\": \"urn:ngsi-ld:Store:001\",\n            \"type\": \"Store\",\n            \"address\": {\n                \"type\": \"PostalAddress\",\n                \"value\": {\n                    \"streetAddress\": \"Rua A\",\n                    \"addressRegion\": \"Ponta Delgada\",\n                    \"addressLocality\": \"Localidade A\",\n                    \"postalCode\": \"1000\"\n                }\n            },\n            \"location\": {\n                \"type\": \"geo:json\",\n                \"value\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        14.73333,\n                        -20.2222\n                    ]\n                }\n            },\n            \"name\": {\n                \"type\": \"Text\",\n                \"value\": \"Loja A\"\n            }\n        },\n        {\n            \"id\": \"urn:ngsi-ld:Store:002\",\n            \"type\": \"Store\",\n            \"address\": {\n                \"type\": \"PostalAddress\",\n                \"value\": {\n                    \"streetAddress\": \"Rua B\",\n                    \"addressRegion\": \"Santa Maria\",\n                    \"addressLocality\": \"Localidade b\",\n                    \"postalCode\": \"1001\"\n                }\n            },\n            \"location\": {\n                \"type\": \"geo:json\",\n                \"value\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        36.97,\n                        -25.1\n                    ]\n                }\n            },\n            \"name\": {\n                \"type\": \"Text\",\n                \"value\": \"Loja B\"\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/op/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"op",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create parks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"actionType\": \"APPEND\",\n    \"entities\": [\n        {\n            \"id\": \"urn:ngsi-ld:Park:001\",\n            \"type\": \"Park\",\n            \"address\": {\n                \"type\": \"PostalAddress\",\n                \"value\": {\n                    \"streetAddress\": \"Rua C\",\n                    \"addressRegion\": \"Ponta Delgada\",\n                    \"addressLocality\": \"Localidade C\",\n                    \"postalCode\": \"1100\"\n                }\n            },\n            \"location\": {\n                \"type\": \"geo:json\",\n                \"value\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        54.73333,\n                        -22.2222\n                    ]\n                }\n            },\n            \"name\": {\n                \"type\": \"Text\",\n                \"value\": \"Parque A\"\n            }\n        },\n        {\n            \"id\": \"urn:ngsi-ld:Park:002\",\n            \"type\": \"Park\",\n            \"address\": {\n                \"type\": \"PostalAddress\",\n                \"value\": {\n                    \"streetAddress\": \"Rua D\",\n                    \"addressRegion\": \"Santa Maria\",\n                    \"addressLocality\": \"Localidade D\",\n                    \"postalCode\": \"1101\"\n                }\n            },\n            \"location\": {\n                \"type\": \"geo:json\",\n                \"value\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        36.975432,\n                        -28.1444\n                    ]\n                }\n            },\n            \"name\": {\n                \"type\": \"Text\",\n                \"value\": \"Parque B\"\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/op/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"op",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Stores to Islands",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"actionType\":\"APPEND\",\n  \"entities\":[\n    {\n      \"id\":\"urn:ngsi-ld:Store:001\", \"type\":\"Store\",\n      \"refIsland\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:Island:001\"\n      }\n    },\n    {\n      \"id\":\"urn:ngsi-ld:Store:002\", \"type\":\"Store\",\n      \"refIsland\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:Island:002\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/op/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"op",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Parks to Islands",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"actionType\":\"APPEND\",\n  \"entities\":[\n    {\n      \"id\":\"urn:ngsi-ld:Park:001\", \"type\":\"Park\",\n      \"refIsland\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:Island:001\"\n      }\n    },\n    {\n      \"id\":\"urn:ngsi-ld:Park:002\", \"type\":\"Park\",\n      \"refIsland\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:Island:002\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/op/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"op",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Dummy-device & Persistence",
+			"item": [
+				{
+					"name": "Create service group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"services\": [\n        {\n            \"apikey\": \"4jggokgpepnvsb2uv4s40d59ov\",\n            \"cbroker\": \"http://orion:1026\",\n            \"entity_type\": \"Device\",\n            \"resource\": \"/iot/json\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4041/iot/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add/Provide a device",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"devices\": [\n        {\n            \"device_id\": \"device001\",\n            \"entity_name\": \"urn:ngsi-ld:Device:001\",\n            \"entity_type\": \"Device\",\n            \"transport\": \"HTTP\",\n            \"endpoint\": \"http://dummy-device:2000/device1\",\n            \"attributes\": [\n                {\n                    \"object_id\": \"t\",\n                    \"name\": \"temperature\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"rh\",\n                    \"name\": \"relativeHumidity\",\n                    \"type\": \"Number\"\n                }\n            ],\n            \"commands\": [\n                {\n                    \"name\": \"switch\",\n                    \"type\": \"command\"\n                }\n            ],\n            \"static_attributes\": [\n                {\n                    \"name\": \"refIsland\",\n                    \"type\": \"Relationship\",\n                    \"value\": \"urn:ngsi-ld:Park:001\"\n                }\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4041/iot/devices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add/Provide a device 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"devices\": [\n        {\n            \"device_id\": \"device002\",\n            \"entity_name\": \"urn:ngsi-ld:Device:002\",\n            \"entity_type\": \"Device\",\n            \"transport\": \"HTTP\",\n            \"endpoint\": \"http://dummy-device-two:2001/device2\",\n            \"attributes\": [\n                {\n                    \"object_id\": \"ws\",\n                    \"name\": \"windspeed\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"v\",\n                    \"name\": \"visitors\",\n                    \"type\": \"Number\"\n                }\n            ],\n            \"commands\": [\n                {\n                    \"name\": \"switch\",\n                    \"type\": \"command\"\n                }\n            ],\n            \"static_attributes\": [\n                {\n                    \"name\": \"refIsland\",\n                    \"type\": \"Relationship\",\n                    \"value\": \"urn:ngsi-ld:Park:002\"\n                }\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4041/iot/devices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Device",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"switch\": {\n        \"type\": \"command\",\n        \"value\": \"\"     \n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:Device:001/attrs?type=Device",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								"urn:ngsi-ld:Device:001",
+								"attrs"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Device"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Device 2",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"switch\": {\n        \"type\": \"command\",\n        \"value\": \"\"     \n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:Device:002/attrs?type=Device",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								"urn:ngsi-ld:Device:002",
+								"attrs"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Device"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:Device:001?type=Device&options=keyValues",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								"urn:ngsi-ld:Device:001"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Device"
+								},
+								{
+									"key": "options",
+									"value": "keyValues"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Status 2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:Device:002?type=Device&options=keyValues",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								"urn:ngsi-ld:Device:002"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Device"
+								},
+								{
+									"key": "options",
+									"value": "keyValues"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subscribe to context changes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Notify Cygnus of all context changes\",\n  \"subject\": {\n    \"entities\": [\n      {\n        \"idPattern\": \".*\"\n      }\n    ]\n  },\n  \"notification\": {\n    \"http\": {\n      \"url\": \"http://cygnus:5050/notify\"\n    }\n  },\n  \"throttling\": 0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/subscriptions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"subscriptions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get sub status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1026/v2/subscriptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"subscriptions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
