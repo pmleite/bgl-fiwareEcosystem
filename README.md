@@ -70,4 +70,4 @@ If you want to connect physical gateways and sensors you will need to deploy chi
     - Humidity
   - Device002 (Linked to Park002)
     - Visitors
-    - Wind Speed
+    - Wind Speed# gbl-fiwareEcosystem
