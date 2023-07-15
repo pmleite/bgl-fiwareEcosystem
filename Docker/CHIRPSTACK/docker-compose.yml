@@ -18,7 +18,7 @@ services:
     ports:
       - 8080:8080
     networks:
-      globaleda-fiware_fiwarenet:
+      fiware_fiwarenet:
 
   chirpstack-gateway-bridge-eu868:
     image: chirpstack/chirpstack-gateway-bridge:4
@@ -29,7 +29,7 @@ services:
     depends_on: 
       - mosquitto
     networks:
-      globaleda-fiware_fiwarenet:
+      fiware_fiwarenet:
 
   chirpstack-rest-api:
     image: chirpstack/chirpstack-rest-api:4
@@ -39,7 +39,7 @@ services:
     depends_on:
       - chirpstack
     networks:
-      globaleda-fiware_fiwarenet:
+      fiware_fiwarenet:
 
   postgres:
     image: postgres:14-alpine
@@ -49,14 +49,14 @@ services:
     environment:
       - POSTGRES_PASSWORD=root
     networks:
-      globaleda-fiware_fiwarenet:
+      fiware_fiwarenet:
 
   redis:
     image: redis:7-alpine
     volumes:
       - redisdata:/data
     networks:
-      globaleda-fiware_fiwarenet:
+      fiware_fiwarenet:
 
   mosquitto:
     image: eclipse-mosquitto:2
@@ -65,10 +65,10 @@ services:
     volumes: 
       - ./configuration/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
     networks:
-      globaleda-fiware_fiwarenet:
+      fiware_fiwarenet:
 
 networks:
-  globaleda-fiware_fiwarenet:
+  fiware_fiwarenet:
     external: true
 
 volumes:

@@ -7,7 +7,7 @@ services:
     depends_on:
       - mongo-db
     ports:
-      - '1026:1026'
+      - '1026:1026' # FIWARE ORION default communication port
     networks:
       fiwarenet:
     command: -dbhost mongo-db -logLevel DEBUG -noCache
@@ -16,58 +16,58 @@ services:
       interval: 10s
 
   iot-agent-json:
-   image: fiware/iotagent-json
-   container_name: fiware-iot-agent-json
-   hostname: fiware-iot-agent-json
-   depends_on:
-     - mongo-db
-   networks:
+    image: fiware/iotagent-json
+    container_name: fiware-iot-agent-json
+    hostname: fiware-iot-agent-json
+    depends_on:
+      - mongo-db
+    networks:
       fiwarenet:
-   expose:
-     - "4041"
-     - "7896"
-   ports:
-     - "4041:4041"
-     - "7896:7896"
-   environment:
-     - IOTA_CB_HOST=orion
-     - IOTA_CB_PORT=1026
-     - IOTA_NORTH_PORT=4041
-     - IOTA_REGISTRY_TYPE=mongodb
-     - IOTA_DEFAULT_EXPRESSION_LANGUAGE=jexl
-     - IOTA_TIMESTAMP=true
-     - IOTA_CB_NGSI_VERSION=v2
-     - IOTA_AUTOCAST=true
-     - IOTA_MONGO_HOST=mongo-db
-     - IOTA_MONGO_PORT=27017
-     - IOTA_MONGO_DB=iotagentjson
-     - IOTA_HTTP_PORT=7896
-     - IOTA_PROVIDER_URL=http://iot-agent-json:4041
-     - IOTA_DEFAULT_RESOURCE=/iot/json
+    expose:
+      - "4041"  
+      - "7896"  
+    ports:
+      - "4041:4041" # Northbound communication
+      - "7896:7896" # HTTP/Southbound communication
+    environment:
+      - IOTA_CB_HOST=orion
+      - IOTA_CB_PORT=1026
+      - IOTA_NORTH_PORT=4041
+      - IOTA_REGISTRY_TYPE=mongodb
+      - IOTA_DEFAULT_EXPRESSION_LANGUAGE=jexl
+      - IOTA_TIMESTAMP=true
+      - IOTA_CB_NGSI_VERSION=v2
+      - IOTA_AUTOCAST=true
+      - IOTA_MONGO_HOST=mongo-db
+      - IOTA_MONGO_PORT=27017
+      - IOTA_MONGO_DB=iotagentjson
+      - IOTA_HTTP_PORT=7896
+      - IOTA_PROVIDER_URL=http://iot-agent-json:4041
+      - IOTA_DEFAULT_RESOURCE=/iot/json
 
   cygnus:
-   image: fiware/cygnus-ngsi:2.16.0
-   container_name: fiware-cygnus
-   hostname: cygnus
-   depends_on:
-     - mysql-db
-   networks:
-     fiwarenet:
-   expose:
-     - "5050"
-     - "5080"
-   ports:
-     - "5050:5050" # Cygnus MYSQL port
-     - "5080:5080" # Cygnus MYSQL administrator port
-   environment:
-     - "CYGNUS_MYSQL_HOST=mysql-db" # MySQL Host
-     - "CYGNUS_MYSQL_PORT=3306" # MySQL Port
-     - "CYGNUS_MYSQL_USER=root" # MySQL User
-     - "CYGNUS_MYSQL_PASS=Passw0rd" # MySQL Password
-     - "CYGNUS_SERVICE_PORT=5050"
-     - "CYGNUS_API_PORT=5080" # Port that Cygnus listens on for operational reasons
+    image: fiware/cygnus-ngsi:2.16.0
+    container_name: fiware-cygnus
+    hostname: cygnus
+    depends_on:
+      - mysql-db
+    networks:
+      fiwarenet:
+    expose:
+      - "5050"
+      - "5080"
+    ports:
+      - "5050:5050" # Cygnus MYSQL port
+      - "5080:5080" # Cygnus MYSQL administrator port
+    environment:
+      - "CYGNUS_MYSQL_HOST=mysql-db"
+      - "CYGNUS_MYSQL_PORT=3306"
+      - "CYGNUS_MYSQL_USER=root"
+      - "CYGNUS_MYSQL_PASS=Passw0rd"
+      - "CYGNUS_SERVICE_PORT=5050"
+      - "CYGNUS_API_PORT=5080" # Port that Cygnus listens on for operational reasons
 
-  mongo-db: #DB used by the Orion Context Broker
+  mongo-db: #DB used by ORION
     image: mongo:4.4
     container_name: mongodb
     hostname: mongo-db
@@ -85,7 +85,7 @@ services:
         mongo --quiet $host/test --eval 'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)' && echo 0 || echo 1
       interval: 10s
 
-  mysql-db: #DB used by the FIWARE Cygnus component
+  mysql-db: #DB used by CYGNUS
     image: mysql:5.7
     container_name: mysql
     hostname: mysql-db
@@ -101,7 +101,7 @@ services:
     networks:
       fiwarenet:
 
-  influxdb:
+  influxdb: #DB used by CHIRPSTACK
     image: influxdb:2.1.1
     container_name: influxdb
     hostname: influxdb
@@ -142,17 +142,17 @@ services:
       fiwarenet:
 
   dummy-device: # Context provider dummy device one, sends temperature and humidity
-   build: ./dummy-device
-   hostname: dummy-device
-   container_name: dummy-device
-   expose:
-   - "2000"
-   ports:
-   - "2000:2000"
-   depends_on:
-     - orion
-   networks:
-     fiwarenet:
+    build: ./dummy-device
+    hostname: dummy-device
+    container_name: dummy-device
+    expose:
+    - "2000"
+    ports:
+    - "2000:2000"
+    depends_on:
+      - orion
+    networks:
+      fiwarenet:
 
   dummy-device-two: # Context provider dummy device two, sends number of visitors and wind speed
     build: ./dummy-device-two
